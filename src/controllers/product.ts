@@ -44,3 +44,31 @@ export const getOneProduct = asyncHandler(
     res.json({ product });
   }
 );
+
+export const updateProduct = asyncHandler(
+  async (req: Request, res: Response) => {
+    const product = {
+      title: req.body.title,
+      code: req.body.code,
+      description: req.body.description,
+      price: req.body.price,
+      colors: req.body.colors,
+      sizes: req.body.sizes,
+    };
+
+    const updatedProduct = await Product.updateOne(
+      {
+        code: req.params.id,
+      },
+      product
+    );
+    const success = updatedProduct.acknowledged;
+
+    if (!updatedProduct) {
+      res.status(401);
+      res.json({ message: "Product Not found" });
+    }
+    res.status(201);
+    res.json({ success: success });
+  }
+);
