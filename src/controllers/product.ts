@@ -72,3 +72,15 @@ export const updateProduct = asyncHandler(
     res.json({ success: success });
   }
 );
+
+export const deleteProduct = asyncHandler(
+  async (req: Request, res: Response) => {
+    const product = await Product.deleteOne({
+      code: req.params.id,
+    });
+    const success = product;
+
+    res.status(201);
+    res.json({ success: success });
+  }
+);
