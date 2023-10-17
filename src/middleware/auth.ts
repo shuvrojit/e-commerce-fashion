@@ -14,7 +14,7 @@ export const comparePassword = (passwd: string, hash: string) => {
 export const createJWT = (user: IUser) => {
   const token = jwt.sign(
     {
-      id: user.id.toString(),
+      id: user.id,
       username: user.userName,
       role: user.role,
     },
@@ -47,6 +47,7 @@ export const protectedRoute = (
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET!) as IUser;
     req.user = user;
+    // console.log(req.user)
     next();
   } catch (e) {
     res.status(401).json({ message: `Invalid token`, error: e });

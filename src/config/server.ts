@@ -6,6 +6,7 @@ import { protectedRoute, adminRoute } from "../middleware/auth";
 import morgan from "morgan";
 import cors from "cors";
 import userRouter from "../routes/user";
+import productRouter from "../routes/product";
 
 const app: Express = express();
 
@@ -35,5 +36,6 @@ app.use("/admin", protectedRoute, adminRoute, (req: Request, res: Response) => {
 });
 
 app.use("/users", userRouter);
+app.use("/products", protectedRoute, productRouter);
 
 export default app;

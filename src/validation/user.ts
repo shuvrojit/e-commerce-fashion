@@ -14,7 +14,7 @@ const userValidation = [
     .isString()
     .withMessage("username must be string"),
   body("email")
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
     .isEmail()
     .withMessage("Email is not valid email address"),
   body("password")
