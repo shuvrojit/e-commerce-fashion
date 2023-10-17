@@ -31,3 +31,16 @@ export const getAllProducts = asyncHandler(
     res.json({ products });
   }
 );
+
+export const getOneProduct = asyncHandler(
+  async (req: Request, res: Response) => {
+    const product = await Product.findOne({ code: req.params.id }).exec();
+
+    if (!product) {
+      res.status(401);
+      res.json({ message: "Product Not found" });
+    }
+    res.status(201);
+    res.json({ product });
+  }
+);
