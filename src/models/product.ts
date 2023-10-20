@@ -9,6 +9,20 @@ const sizeSchema = new mongoose.Schema({
   size: String,
 });
 
+const reviewSchema = new mongoose.Schema({
+  name: String,
+  rating: {
+    type: String,
+    required: true,
+  },
+  comment: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
+});
+
 const productSchema = new mongoose.Schema<ProductInterface>(
   {
     user: {
@@ -20,6 +34,13 @@ const productSchema = new mongoose.Schema<ProductInterface>(
       type: String,
       required: true,
     },
+    brand: {
+      type: String,
+    },
+    category: {
+      type: String,
+    },
+
     code: {
       type: String,
       required: true,
@@ -35,9 +56,14 @@ const productSchema = new mongoose.Schema<ProductInterface>(
     },
     colors: [colorSchema],
     sizes: [sizeSchema],
+    countInStock: {
+      type: Number,
+      required: true,
+    },
     image: {
       type: String,
     },
+    reviews: [reviewSchema],
   },
   {
     timestamps: true,

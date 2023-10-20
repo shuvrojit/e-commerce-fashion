@@ -26,6 +26,9 @@ export interface ProductInterface extends Document {
   sizes: string[];
   code: string;
   price: number;
+  brand: string;
+  category: string;
+  countInStock: number;
 }
 
 export {};
