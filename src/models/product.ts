@@ -12,7 +12,7 @@ const sizeSchema = new mongoose.Schema({
 const reviewSchema = new mongoose.Schema({
   name: String,
   rating: {
-    type: String,
+    type: Number,
     required: true,
   },
   comment: String,
